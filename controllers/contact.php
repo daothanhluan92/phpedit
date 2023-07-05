@@ -1,3 +1,4 @@
 <?php
-$healing = 'Contact';
-require 'views/contact.view.php';
+view('contact.view.php',[
+    'healing'=>'Contact'
+]);

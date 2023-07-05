@@ -1,5 +1,5 @@
 <?php
-$healing = 'Home';
-
-require 'views/index.view.php';
+view('index.view.php',[
+    'healing'=>'Home'
+]);
 

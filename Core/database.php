@@ -1,5 +1,5 @@
 <?php
-require 'config.php';
+require '../config.php';
 class Database{
     public $syn;
     public function __construct($config)
