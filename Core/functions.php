@@ -15,3 +15,6 @@
         extract($attribution);
         require base_path('views/'.$path);
     }
+    function rowCount($result){
+        return $result->rowCount();
+    }

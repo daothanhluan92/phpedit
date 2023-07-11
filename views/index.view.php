@@ -3,8 +3,8 @@
 <?php require 'partials/banner.php' ?>
 
     <main>
-        <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-           Home
+        <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8 text-blue-700" >
+           Welcome <?= $_SESSION['user']['email'] ?? 'Guest'  ?> to home page.
         </div>
     </main>
 

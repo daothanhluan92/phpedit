@@ -1,51 +1,50 @@
 <?php
 namespace Core;
-class Route{
+
+class Router{
     protected $routes = [];
-    public function get($uri,$controller){
+    public function add($uri,$controller,$method){
         $this->routes[] = [
             'uri'=>$uri,
             'controller'=>$controller,
-            'method'=>'GET'
+            'method'=>$method,
+            'middleware'=>null
         ];
+        return $this;
+    }
+    public function get($uri,$controller){
+        return $this->add($uri,$controller,'GET');
     }
     public function post($uri,$controller){
-        $this->routes[] = [
-            'uri'=>$uri,
-            'controller'=>$controller,
-            'method'=>'POST'
-        ];
+       return $this->add($uri,$controller,'POST');
+    }
+    public function only($key){
+        $this->routes[array_key_last($this->routes)]['middleware']=$key;
+        return $this;
     }
     public function delete($uri,$controller){
-        $this->routes[] = [
-            'uri'=>$uri,
-            'controller'=>$controller,
-            'method'=>'DELETE'
-        ];
+        return $this->add($uri,$controller,'DELETE');
     }
     public function put($uri,$controller){
-        $this->routes[] = [
-            'uri'=>$uri,
-            'controller'=>$controller,
-            'method'=>'PUT'
-        ];
+        return $this->add($uri,$controller,'PUT');
     }
     public function patch($uri,$controller){
-        $this->routes[] = [
-            'uri'=>$uri,
-            'controller'=>$controller,
-            'method'=>'PATCH'
-        ];
+        return $this->add($uri,$controller,'PATCH');
     }
     public function router($uri,$method){
-        foreach ($this->routes as $routes){
-            if ($routes['uri']===$uri && $routes['method']===$method){
-                require $routes['controller'];
-            }else{
-                $this->abort();
+        foreach ($this->routes as $route) {
+            if ($route['uri'] === $uri and $route['method'] === strtoupper($method)) {
+                if ($route['middleware'] === 'auth') {
+                    if ($_SESSION['name'] ?? false) {
+                        header('location:/');
+                        exit();
+                    }
+                }
+                return require base_path($route['controller']);
             }
         }
-    }
+        $this->abort();
+        }
     protected function abort($error=404){
             http_response_code($error);
             require "../views/{$error}.php";
