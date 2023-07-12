@@ -35,7 +35,7 @@ class Router{
         foreach ($this->routes as $route) {
             if ($route['uri'] === $uri and $route['method'] === strtoupper($method)) {
                 if ($route['middleware'] === 'auth') {
-                    if ($_SESSION['name'] ?? false) {
+                    if ($_SESSION['user'] ?? false) {
                         header('location:/');
                         exit();
                     }

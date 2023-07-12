@@ -15,6 +15,11 @@
         extract($attribution);
         require base_path('views/'.$path);
     }
-    function rowCount($result){
-        return $result->rowCount();
+    function find($result){
+        return $result->fetch();
+    }
+    function userSession($email){
+       return $_SESSION['user'] = [
+           'email' => $email
+       ];
     }
