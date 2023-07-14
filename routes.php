@@ -1,6 +1,6 @@
 <?php
 
-$router->get('/','controllers/index.php')->only('guest');
+$router->get('/','controllers/index.php');
 $router->get('/about','controllers/about.php')->only('guest');
 $router->get('/contact','controllers/contact.php')->only('guest');
 
@@ -13,5 +13,5 @@ $router->post('/login','controllers/session/store.php')->only('guest');
 $router->post('/logout','controllers/session/destroy.php')->only('auth');
 
 
-$router->get('/middleware','Core/Middleware/Middleware.php');
+$router->get('/middleware','Core/Middleware/Middleware.php')->only('guest');
 

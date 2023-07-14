@@ -1,14 +1,15 @@
 <?php
+
+namespace Core\Middleware;
+
 class Middleware
 {
     public const MAP = [
-        '1' => 'Khach',
-        '2' => 'Chu'
+        'guest'=>Guest::class,
+        'auth'=>Auth::class
     ];
-    public function get(){
-        return [
-          '1' => 'khach'
-        ];
+    public static function relsove($key){
+        $middleware = static::MAP[$key];
+        (new $middleware)->handle();
     }
 }
-

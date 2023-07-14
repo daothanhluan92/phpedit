@@ -8,10 +8,10 @@ $checkEmail = $db->query('select * from sale where usersMail = :email', [
     'email' => $email
 ]);
 $obj = find($checkEmail);
-if ($obj == true) {
+if ($obj ?? false) {
     $hashPass = $obj['usersPwd'];
     if(password_verify($password,$hashPass) ?? false){
-        userSession($email);
+        createUserSession($email);
         header('location:/');
         exit();
     }

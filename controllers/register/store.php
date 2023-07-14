@@ -9,7 +9,6 @@ $checkEmail = $db->query('select * from sale where usersMail = :email',[
     'email'=>$email
 ])->rowCount();
 if($checkEmail == true){
-
 }else{
     $db->query('insert into sale(usersMail,usersPwd) values(:email, :password)',[
         'email'=> $email,

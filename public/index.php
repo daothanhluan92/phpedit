@@ -11,10 +11,9 @@ spl_autoload_register(callback: function ($class){
     require base_path("{$class}.php");
 });
 require base_path('bootstrap.php');
-
 $router =  new Router();
 require base_path('routes.php');
 $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
-$method = $_SERVER['REQUEST_METHOD'];
+$method = $_SERVER['REQUEST_METHOD'] ?? $_POST['_method'];
 $router->router($uri,$method);
 

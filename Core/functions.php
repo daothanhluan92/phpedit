@@ -18,8 +18,12 @@
     function find($result){
         return $result->fetch();
     }
-    function userSession($email){
+    function createUserSession($email){
        return $_SESSION['user'] = [
            'email' => $email
        ];
+    }
+    function redirect(){
+       return header('location:/');
+        exit();
     }

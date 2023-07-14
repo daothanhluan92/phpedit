@@ -2,5 +2,4 @@
 $_SESSION = [];
 session_destroy();
 setcookie('cookieid','',time() - 3600);
-header('location:/');
-exit();
+redirect();
