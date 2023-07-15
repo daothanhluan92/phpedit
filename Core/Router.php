@@ -42,7 +42,7 @@ class Router{
              if ($route['middleware']){
                 Middleware::relsove($route['middleware']);
              }
-                return require base_path($route['controller']);
+                return require base_path('Http/controllers/'.$route['controller']);
             }
         }
         $this->abort();

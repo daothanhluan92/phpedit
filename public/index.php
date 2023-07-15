@@ -1,7 +1,5 @@
 <?php
 session_start();
-use Core\App;
-use Core\Database;
 use Core\Router;
 
 const BASE_PATH = __DIR__.'/../';
