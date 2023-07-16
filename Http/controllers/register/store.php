@@ -1,10 +1,15 @@
 <?php
-use Core\Database;
 use Core\App;
-
-$db = App::Container()->resolver('Core\Database');
+use Http\Form\LoginForm;
 $email = $_POST['email'];
 $password = $_POST['password'];
+LoginForm::checkLogin($email,$password);
+if (!empty(LoginForm::error())) {
+    view('register.view.php',[
+       'error' => LoginForm::error()
+    ]);
+}
+$db = App::Container()->resolver('Core\Database');
 $checkEmail = $db->query('select * from sale where usersMail = :email',[
     'email'=>$email
 ])->rowCount();

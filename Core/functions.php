@@ -23,7 +23,7 @@
            'email' => $email
        ];
     }
-    function redirect(){
-       return header('location:/');
+    function redirect($path){
+        header('location:'.$path);
         exit();
     }

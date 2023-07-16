@@ -14,7 +14,7 @@ class Auth
             $hashPass = $obj['usersPwd'];
             if(password_verify($password,$hashPass) ?? false){
                 createUserSession($email);
-                redirect();
+                redirect('');
             }
         }
     }
