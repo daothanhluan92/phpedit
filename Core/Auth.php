@@ -4,7 +4,8 @@ namespace Core;
 
 class Auth
 {
-    public function atempt($email,$password){
+    protected static $error = [];
+    public static function atempt($email,$password){
         $checkEmail = App::Container()->resolver(Database::class)
             ->query('select * from sale where usersMail = :email', [
             'email' => $email
@@ -14,8 +15,17 @@ class Auth
             $hashPass = $obj['usersPwd'];
             if(password_verify($password,$hashPass) ?? false){
                 createUserSession($email);
-                redirect('');
+            }else{
+                return static::$error['password'] = 'Password No Valid';
             }
+        }else{
+            return static::$error['email'] = 'Email No Valid';
         }
+    }
+    public static function error(){
+        return static::$error;
+    }
+    public static function session($key,$value){
+        return $_SESSION[$key] = $value;
     }
 }

@@ -1,5 +1,6 @@
 <?php
 namespace Http\Form;
+use Core\Auth;
 use Core\Validate;
 class LoginForm
 {
