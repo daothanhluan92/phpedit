@@ -16,8 +16,8 @@
         </div>
           <div class="mt-2">
               <p class="text-blue-600"><?php
-                  if (! empty($error['email'])){
-                  print_r($error['email']);
+                  if (! empty($_SESSION['error']['email'])){
+                  print_r($_SESSION['error']['email']);
                   }
                   ?>
               </p>
@@ -33,8 +33,8 @@
         </div>
           <div class="mt-2">
              <p class="text-red-600"><?php
-                 if (! empty($error['password'])){
-                     print_r($error['password']);
+                 if (! empty($_SESSION['error']['password'])){
+                     print_r($_SESSION['error']['password']);
                  }
                  ?></p>
           </div>

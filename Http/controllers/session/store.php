@@ -4,4 +4,4 @@ $email = $_POST['email'];
 $password = $_POST['password'];
 Auth::atempt($email,$password);
 Auth::session('error',Auth::error());
-view('login.view.php');
+redirect('/login');

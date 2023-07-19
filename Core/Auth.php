@@ -25,7 +25,4 @@ class Auth
     public static function error(){
         return static::$error;
     }
-    public static function session($key,$value){
-        return $_SESSION[$key] = $value;
-    }
 }

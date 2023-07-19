@@ -5,16 +5,15 @@ $email = $_POST['email'];
 $password = $_POST['password'];
 LoginForm::checkLogin($email,$password);
 if (!empty(LoginForm::error())) {
-    view('register.view.php',[
-       'error' => LoginForm::error()
-    ]);
+    LoginForm::session();
+    redirect('/register');
 }
 $db = App::Container()->resolver('Core\Database');
 $checkEmail = $db->query('select * from sale where usersMail = :email',[
     'email'=>$email
 ])->rowCount();
 if($checkEmail){
-
+ redirect('/register');
 }else{
     $db->query('insert into sale(usersMail,usersPwd) values(:email, :password)',[
         'email'=> $email,
@@ -24,7 +23,6 @@ if($checkEmail){
     $_SESSION['user'] = [
         'email'=> $email
     ];
-
     header('location:/');
 }
 
