@@ -1,11 +1,12 @@
 <?php
 use Core\App;
+use Core\Session;
 use Http\Form\LoginForm;
 $email = $_POST['email'];
 $password = $_POST['password'];
 LoginForm::checkLogin($email,$password);
 if (!empty(LoginForm::error())) {
-    LoginForm::session();
+    Session::flash('error',LoginForm::error());
     redirect('/register');
 }
 $db = App::Container()->resolver('Core\Database');
@@ -20,9 +21,9 @@ if($checkEmail){
         'password'=> password_hash($password, PASSWORD_BCRYPT)
 
     ]);
-    $_SESSION['user'] = [
-        'email'=> $email
-    ];
+    Session::put('user',[
+        'email'=>$email
+    ]);
     header('location:/');
 }
 

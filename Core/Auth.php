@@ -16,13 +16,14 @@ class Auth
             if(password_verify($password,$hashPass) ?? false){
                 createUserSession($email);
             }else{
-                return static::$error['password'] = 'Password No Valid';
+                return static::$error = [
+                    'password'=>'Password No Valid'
+                    ];
             }
         }else{
-            return static::$error['email'] = 'Email No Valid';
+            return static::$error = [
+                'email' => 'Email No Valid'
+            ];
         }
-    }
-    public static function error(){
-        return static::$error;
     }
 }

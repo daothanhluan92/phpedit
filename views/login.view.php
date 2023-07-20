@@ -1,4 +1,6 @@
-<?php require 'partials/header.php' ?>
+<?php use Core\Session;
+
+require 'partials/header.php' ?>
 <?php require 'partials/nav.php' ?>
 
 <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
@@ -15,8 +17,8 @@
                     <input id="email" name="email" type="email" autocomplete="email" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
                 <p class="text-red-500">
-                    <?php if($_SESSION['error']['email'] ?? false) {
-                        print_r($_SESSION['error']['email']);
+                    <?php if(Session::get('error')['email'] ?? false) {
+                        print_r(Session::get('error')['email']);
                     }
                     ?>
                 </p>
@@ -32,8 +34,8 @@
 
                 <div class="mt-2">
                  <p class="text-red-500">
-                     <?php if($_SESSION['error']['password'] ?? false) {
-                         print_r($_SESSION['error']['password']);
+                     <?php if(Session::get('error')['password'] ?? false) {
+                         print_r(Session::get('error')['password']);
                      }
                      ?>
                  </p>

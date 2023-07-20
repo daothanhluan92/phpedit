@@ -1,4 +1,6 @@
-<?php require 'partials/header.php' ?>
+<?php use Core\Session;
+
+require 'partials/header.php' ?>
 <?php require 'partials/nav.php' ?>
 
 <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
@@ -16,9 +18,9 @@
         </div>
           <div class="mt-2">
               <p class="text-blue-600"><?php
-                  if (! empty($_SESSION['error']['email'])){
-                  print_r($_SESSION['error']['email']);
-                  }
+                    if (isset(Session::get('error')['email'])){
+                        print_r(Session::get('error')['email']);
+                    }
                   ?>
               </p>
           </div>
@@ -33,8 +35,8 @@
         </div>
           <div class="mt-2">
              <p class="text-red-600"><?php
-                 if (! empty($_SESSION['error']['password'])){
-                     print_r($_SESSION['error']['password']);
+                 if (isset(Session::get('error')['password'])){
+                     print_r(Session::get('error')['password']);
                  }
                  ?></p>
           </div>
