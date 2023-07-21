@@ -16,5 +16,6 @@ $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 $method = $_SERVER['REQUEST_METHOD'] ?? $_POST['_method'];
 $router->router($uri,$method);
 Session::unflash('error');
+Session::unflash('old');
 
 

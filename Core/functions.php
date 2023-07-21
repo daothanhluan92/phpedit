@@ -1,5 +1,7 @@
 <?php
-    function dd($value){
+
+
+function dd($value){
         echo '<pre>';
         var_dump($value);
         echo '</pre>';
@@ -26,4 +28,7 @@
     function redirect($path){
         header('location:'.$path);
         exit();
+    }
+    function old($key){
+       return \Core\Session::get($key);
     }
